@@ -11,3 +11,7 @@ venv/
 
 #Environment/secrets file
 .env
+
+#Power BI project: local-only settings and data cache
+**/.pbi/localSettings.json
+**/.pbi/cache.abf
