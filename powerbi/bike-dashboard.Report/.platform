@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "bike-dashboard"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "2a1bc46b-dc07-40e3-8040-ee756b22b47f"
+  }
+}

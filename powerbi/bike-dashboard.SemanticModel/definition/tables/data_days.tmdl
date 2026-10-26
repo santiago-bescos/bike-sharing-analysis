@@ -1,0 +1,252 @@
+table data_days
+	lineageTag: e1b994cf-4d97-41f5-bb47-027c356f0a67
+
+	/// Total bikes rented
+	measure 'Total Rentals' = SUM(data_days[cnt])
+		formatString: #,0
+		displayFolder: Measures
+		lineageTag: 81cb69a3-04fe-4c12-80ee-34dac2a7e853
+
+	/// Mean bikes rented per day
+	measure 'Avg Daily Rentals' = AVERAGE(data_days[cnt])
+		formatString: #,0
+		displayFolder: Measures
+		lineageTag: 26da7479-cf5d-4ef8-966e-3a6f55bfdc45
+
+	/// Share of rentals made by registered users
+	measure 'Registered Share' = DIVIDE(SUM(data_days[registered]), SUM(data_days[cnt]))
+		formatString: 0.0%
+		displayFolder: Measures
+		lineageTag: 9008d9a7-52b2-46a9-b54c-fea8889cefff
+
+	/// Mean casual rentals per day
+	measure 'Avg Casual Riders' = AVERAGE(data_days[casual])
+		formatString: #,0
+		displayFolder: Measures
+		lineageTag: e153821d-1349-4cad-91f6-5a117e06a8e0
+
+	/// Mean registered rentals per day
+	measure 'Avg Registered Riders' = AVERAGE(data_days[registered])
+		formatString: #,0
+		displayFolder: Measures
+		lineageTag: 81cb0ec6-8388-4541-9adc-604d36d6a5e9
+
+	/// Number of days in the current filter
+	measure Days = COUNTROWS(data_days)
+		formatString: #,0
+		displayFolder: Measures
+		lineageTag: e6765d87-1255-4b1e-960f-c487f6ad6d1b
+
+	column instant
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 1d8895d2-90b0-4d1d-acb7-8d4973af2548
+		summarizeBy: none
+		sourceColumn: instant
+
+		annotation SummarizationSetBy = Automatic
+
+	column dteday
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 31413031-ebda-48d5-9b35-4bfb374eb087
+		summarizeBy: none
+		sourceColumn: dteday
+
+		variation Variation
+			isDefault
+			relationship: bcedaeab-b15b-4ccc-acc5-acaf24dff75a
+			defaultHierarchy: LocalDateTable_3e64932a-e0bc-4a56-819e-3e32f89dadcd.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column season
+		dataType: int64
+		formatString: 0
+		lineageTag: 011da09a-1194-4d07-8542-2ea50d5b88a1
+		summarizeBy: none
+		sourceColumn: season
+
+		annotation SummarizationSetBy = Automatic
+
+	column yr
+		dataType: int64
+		formatString: 0
+		lineageTag: d95015de-a68a-4a15-acaa-3100af1a7ddd
+		summarizeBy: none
+		sourceColumn: yr
+
+		annotation SummarizationSetBy = Automatic
+
+	column mnth
+		dataType: int64
+		formatString: 0
+		lineageTag: cba2ed8e-6a73-4446-b669-f3e63e8304c2
+		summarizeBy: none
+		sourceColumn: mnth
+
+		annotation SummarizationSetBy = Automatic
+
+	column holiday
+		dataType: int64
+		formatString: 0
+		lineageTag: cfce2456-1b45-47fc-ac0c-b991d49df408
+		summarizeBy: none
+		sourceColumn: holiday
+
+		annotation SummarizationSetBy = Automatic
+
+	column weekday
+		dataType: int64
+		formatString: 0
+		lineageTag: 82b5b6d1-7370-402f-876a-17f46579f4c0
+		summarizeBy: none
+		sourceColumn: weekday
+
+		annotation SummarizationSetBy = Automatic
+
+	column workingday
+		dataType: int64
+		formatString: 0
+		lineageTag: 181ec0f2-92dc-46a2-a727-1ab654f50bce
+		summarizeBy: none
+		sourceColumn: workingday
+
+		annotation SummarizationSetBy = Automatic
+
+	column weathersit
+		dataType: int64
+		formatString: 0
+		lineageTag: 3fb2b872-1c9a-4c4e-9d07-fa2d7c142d62
+		summarizeBy: none
+		sourceColumn: weathersit
+
+		annotation SummarizationSetBy = Automatic
+
+	column temp
+		dataType: double
+		lineageTag: e5b889ff-2c8d-492a-9cf6-9bed41dbe58c
+		summarizeBy: none
+		sourceColumn: temp
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column atemp
+		dataType: double
+		lineageTag: 39618fa3-1393-4153-83d6-a156837be016
+		summarizeBy: none
+		sourceColumn: atemp
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column hum
+		dataType: double
+		lineageTag: aceb2735-3ccd-441c-a296-6a9a5566322f
+		summarizeBy: none
+		sourceColumn: hum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column windspeed
+		dataType: double
+		lineageTag: 8d35c229-e708-4ced-8af4-672cfb09d07f
+		summarizeBy: none
+		sourceColumn: windspeed
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column casual
+		dataType: int64
+		formatString: 0
+		lineageTag: 23e90b62-9098-464b-8dfa-317bc7faf707
+		summarizeBy: sum
+		sourceColumn: casual
+
+		annotation SummarizationSetBy = Automatic
+
+	column registered
+		dataType: int64
+		formatString: 0
+		lineageTag: 004cec28-6704-4e7e-b87d-5db1258bc0e0
+		summarizeBy: sum
+		sourceColumn: registered
+
+		annotation SummarizationSetBy = Automatic
+
+	column cnt
+		dataType: int64
+		formatString: 0
+		lineageTag: 19945a02-5cba-45bb-aaa6-73ba3bd17aea
+		summarizeBy: sum
+		sourceColumn: cnt
+
+		annotation SummarizationSetBy = Automatic
+
+	column weather
+		dataType: string
+		lineageTag: b56e10b7-4502-47b6-8efc-ee85654bdae9
+		summarizeBy: none
+		sourceColumn: weather
+		sortByColumn: weathersit
+
+		annotation SummarizationSetBy = Automatic
+
+	column working_label
+		dataType: string
+		lineageTag: 8fd6da1a-c9a6-451e-bf56-ec9764b0879c
+		summarizeBy: none
+		sourceColumn: working_label
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Calendar year (from yr: 0 = 2011, 1 = 2012)
+	column Year = FORMAT(2011 + data_days[yr], "0")
+		dataType: string
+		lineageTag: 8975df05-f7af-45a6-859f-ed0f4e9c2fe9
+		summarizeBy: none
+		sortByColumn: yr
+
+	/// Short month name, sorted by mnth
+	column Month = FORMAT(DATE(2000, data_days[mnth], 1), "MMM")
+		dataType: string
+		lineageTag: 70502560-f179-4fcc-b319-1e984bfa5960
+		summarizeBy: none
+		sortByColumn: mnth
+
+	/// Season label. Codes follow actual dates (1 starts 1 Jan = Winter); the raw Readme's labels are off by one.
+	column 'Season Name' = SWITCH(data_days[season], 1, "Winter", 2, "Spring", 3, "Summer", 4, "Fall")
+		dataType: string
+		lineageTag: b58bb225-3782-4de9-b70c-aa59b85e2a02
+		summarizeBy: none
+		sortByColumn: season
+
+	/// temp is normalised (divided by 41 max); this converts back to °C
+	column 'Temperature (°C)' = ROUND(data_days[temp] * 41, 1)
+		dataType: double
+		formatString: 0.0
+		lineageTag: 22ef144f-189c-4666-ad9d-fcd63fbd823b
+		summarizeBy: none
+
+	partition data_days = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\santi\Documents\GitHub Projects\bike-sharing-analysis\data\processed\data_days.csv"),[Delimiter=",", Columns=18, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"instant", Int64.Type}, {"dteday", type date}, {"season", Int64.Type}, {"yr", Int64.Type}, {"mnth", Int64.Type}, {"holiday", Int64.Type}, {"weekday", Int64.Type}, {"workingday", Int64.Type}, {"weathersit", Int64.Type}, {"temp", type number}, {"atemp", type number}, {"hum", type number}, {"windspeed", type number}, {"casual", Int64.Type}, {"registered", Int64.Type}, {"cnt", Int64.Type}, {"weather", type text}, {"working_label", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

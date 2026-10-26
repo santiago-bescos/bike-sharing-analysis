@@ -1,0 +1,5 @@
+relationship bcedaeab-b15b-4ccc-acc5-acaf24dff75a
+	joinOnDateBehavior: datePartOnly
+	fromColumn: data_days.dteday
+	toColumn: LocalDateTable_3e64932a-e0bc-4a56-819e-3e32f89dadcd.Date
+
